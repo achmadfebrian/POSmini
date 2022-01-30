@@ -1,0 +1,23 @@
+.login {
+  background: #a8ff78 !important;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #78ffd6, #a8ff78) !important;  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #78ffd6, #a8ff78) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  .logo {
+
+    img {
+      height: 40px;
+    }
+  }
+
+  .form-login {
+    position: absolute;
+    width: 400px;
+    background-color: #ffffffab;
+    backdrop-filter: blur(8px);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+

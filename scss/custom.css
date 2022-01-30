@@ -1,0 +1,25 @@
+.login {
+  background: #a8ff78 !important;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, right top, from(#78ffd6), to(#a8ff78)) !important;
+  background: linear-gradient(to right, #78ffd6, #a8ff78) !important;
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.login .logo img {
+  height: 40px;
+}
+
+.login .form-login {
+  position: absolute;
+  width: 400px;
+  background-color: #ffffffab;
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+/*# sourceMappingURL=custom.css.map */
