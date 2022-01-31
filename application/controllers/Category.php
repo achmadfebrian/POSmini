@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Product extends CI_Controller
+class Category extends CI_Controller
 {
   public function __construct()
   {
@@ -18,11 +18,6 @@ class Product extends CI_Controller
 
   public function index()
   {
-
-    // get data product
-    $urlproduct = $this->Key->baseurl_api() . 'product/show_product';
-    $resultproduct = $this->Key->api_get($urlproduct);
-
     // get category
     $urlcategory = $this->Key->baseurl_api() . 'category/show_category';
     $resultcategory = $this->Key->api_get($urlcategory);
@@ -30,30 +25,24 @@ class Product extends CI_Controller
 
 
     $data['categoryList'] = $resultcategory['data'];
-    $data['productList'] = $resultproduct['data'];
-    $data['title'] = 'Product';
+    $data['title'] = 'Category';
 
     $this->load->view('templates/header', $data);
     $this->load->view('sidebar');
     $this->load->view('templates/content-open', $data);
-    $this->load->view('product', $data);
+    $this->load->view('category', $data);
     $this->load->view('templates/content-closed');
     $this->load->view('templates/footer');
   }
 
   public function add()
   {
-    $upload = $this->do_upload($_FILES);
 
     $post = $this->input->post();
 
-    $url = $this->Key->baseurl_api() . 'product/add_product';
+    $url = $this->Key->baseurl_api() . 'category/add_category';
     $params = [
-      'product_name' => $post['product-name'],
-      'category_id' => $post['category'],
-      'price' => $post['price'],
-      'image' => $upload,
-      'description' => $post['description'],
+      'category_name' => $post['category-name']
     ];
 
     $result = $this->Key->api_post($url, $params);
@@ -66,7 +55,7 @@ class Product extends CI_Controller
         </div>
       ');
 
-      redirect('product');
+      redirect('category');
     } else {
       $this->session->set_flashdata('message', '
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -75,33 +64,14 @@ class Product extends CI_Controller
         </div>
       ');
 
-      redirect('product');
+      redirect('category');
     }
   }
 
-  public function do_upload($file)
-  {
-    $config['upload_path']          = './assets/product_image/';
-    $config['allowed_types']        = 'gif|jpg|png';
-    $config['max_size']             = 100;
-    $config['max_width']            = 1024;
-    $config['max_height']           = 768;
-
-    $this->load->library('upload', $config);
-
-    if (!$this->upload->do_upload('image')) {
-      $error = array('error' => $this->upload->display_errors());
-      return $error;
-    } else {
-      $data = array('upload_data' => $this->upload->data());
-      return $data['upload_data']['file_name'];
-    }
-  }
-
-  public function get_product_id()
+  public function get_category_id()
   {
     $id = $this->input->post('id');
-    $url = $this->Key->baseurl_api() . 'product/show_product_id';
+    $url = $this->Key->baseurl_api() . 'category/show_category_id';
     $params = ['id' => $id];
 
     $result = $this->Key->api_post($url, $params);
@@ -113,19 +83,9 @@ class Product extends CI_Controller
   {
     $post = $this->input->post();
 
-    if ($_FILES['_image']['name'] != "") {
-      $upload = $this->do_upload($_FILES);
-    } else {
-      $upload = $this->input->post('_old_image');
-    }
-
-    $url = $this->Key->baseurl_api() . 'product/update_product';
+    $url = $this->Key->baseurl_api() . 'category/update_category';
     $params = [
-      'product_name' => $post['_product-name'],
-      'category_id' => $post['_category'],
-      'price' => $post['_price'],
-      'image' => $upload,
-      'description' => $post['_description'],
+      'category_name' => $post['_category-name'],
       'id' => $post['_id'],
     ];
 
@@ -139,7 +99,7 @@ class Product extends CI_Controller
         </div>
       ');
 
-      redirect('product');
+      redirect('category');
     } else {
       $this->session->set_flashdata('message', '
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -148,13 +108,13 @@ class Product extends CI_Controller
         </div>
       ');
 
-      redirect('product');
+      redirect('category');
     }
   }
 
   public function delete()
   {
-    $url = $this->Key->baseurl_api() . 'product/delete_product';
+    $url = $this->Key->baseurl_api() . 'category/delete_category';
     $params = [
       'id' => $this->input->get('id')
     ];
@@ -169,7 +129,7 @@ class Product extends CI_Controller
         </div>
       ');
 
-      redirect('product');
+      redirect('category');
     } else {
       $this->session->set_flashdata('message', '
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -178,7 +138,7 @@ class Product extends CI_Controller
         </div>
       ');
 
-      redirect('product');
+      redirect('category');
     }
   }
 }

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Product extends CI_Controller
+class Show_product extends CI_Controller
 {
   public function __construct()
   {
@@ -23,20 +23,15 @@ class Product extends CI_Controller
     $urlproduct = $this->Key->baseurl_api() . 'product/show_product';
     $resultproduct = $this->Key->api_get($urlproduct);
 
-    // get category
-    $urlcategory = $this->Key->baseurl_api() . 'category/show_category';
-    $resultcategory = $this->Key->api_get($urlcategory);
 
 
-
-    $data['categoryList'] = $resultcategory['data'];
     $data['productList'] = $resultproduct['data'];
     $data['title'] = 'Product';
 
     $this->load->view('templates/header', $data);
     $this->load->view('sidebar');
     $this->load->view('templates/content-open', $data);
-    $this->load->view('product', $data);
+    $this->load->view('show_product', $data);
     $this->load->view('templates/content-closed');
     $this->load->view('templates/footer');
   }

@@ -10,7 +10,7 @@
   <link href="<?= base_url() ?>node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="<?= base_url() ?>scss/custom.css" rel="stylesheet">
 
-  <title>Hello, world!</title>
+  <title><?= $title; ?></title>
 </head>
 
 <body>

@@ -22,4 +22,22 @@
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
+
+.sidebar {
+  width: 20vw;
+  height: 100vh;
+}
+
+.sidebar .logo img {
+  height: 24px;
+}
+
+.sidebar .menu .active a {
+  opacity: 1 !important;
+}
+
+.content {
+  width: 80vw;
+  height: 100vh;
+}
 /*# sourceMappingURL=custom.css.map */

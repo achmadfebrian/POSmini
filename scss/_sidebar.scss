@@ -1,0 +1,22 @@
+.sidebar {
+  width: 20vw;
+  height: 100vh;
+  // background-color: #55C9C4;
+
+  .logo {
+
+    img {
+      height: 24px;
+    }
+  }
+
+  .menu {
+
+    .active {
+
+      a {
+        opacity: 1 !important;
+      }
+    }
+  }
+}
